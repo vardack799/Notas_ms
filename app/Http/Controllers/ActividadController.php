@@ -32,12 +32,12 @@ class ActividadController extends Controller
      public function store(Request $request)
      {
          $actividad = new Actividad();
-         $actividad->codigo = $request->input('codigo');
-         $actividad->nombres = $request->input('nombres');
-         $actividad->apellidos = $request->input('apellidos');
+         $actividad->descripcion = $request->input('descripcion');
+         $actividad->nota = $request->input('nota');
+         $actividad->codEstudiante = $request->input('codEstudiante');
          $actividad->save();
          return response(json_encode([
-             "data" => "Estudiante registrado"
+             "data" => "La actividad ha sido registrada"
          ]));
      }
      
@@ -48,9 +48,9 @@ class ActividadController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function show($codigo)
+    public function show($id)
     {
-        $actividad = Actividad::find($codigo);
+        $actividad = Actividad::find($id);
         return response(json_encode([
             "data" => $actividad
         ]));
@@ -63,15 +63,14 @@ class ActividadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $codigo)
+    public function update(Request $request, $id)
     {
-        $estudiante = Actividad::find($codigo);
-         $estudiante->codigo = $request->input('codigo');
-        $estudiante->nombres = $request->input('nombres');
-        $estudiante->apellidos = $request->input('apellidos');
+        $estudiante = Actividad::find($id);
+         $estudiante->descripcion = $request->input('descripcion');
+        $estudiante->nota = $request->input('nota');
         $estudiante->save();
         return response(json_encode([
-            "data" => "Estudiante actualizado"
+            "data" => "La Actividad ha sido actualizada"
         ]));
     }
 
@@ -82,17 +81,17 @@ class ActividadController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function destroy($codigo)
+    public function destroy($id)
     {
-        $estudiante = Actividad::find($codigo);
-        if (empty($estudiante)) {
+        $actividad = Actividad::find($id);
+        if (empty($actividad)) {
             return response(json_encode([
-                "data" => "El estudiante no existe"
+                "data" => "La actividad no existe"
             ]), 404);
         }
-        $estudiante->delete();
+        $actividad->delete();
         return response(json_encode([
-            "data" => "Estudiante eliminado"
+            "data" => "La actividad ha sido eliminado"
         ]));
     }
 
