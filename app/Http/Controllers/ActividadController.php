@@ -34,7 +34,7 @@ class ActividadController extends Controller
          $actividad = new Actividad();
          $actividad->descripcion = $request->input('descripcion');
          $actividad->nota = $request->input('nota');
-         $actividad->codEstudiante = $request->input('codEstudiante');
+         $actividad->codigoEstudiante = $request->input('codigoEstudiante');
          $actividad->save();
          return response(json_encode([
              "data" => "La actividad ha sido registrada"
@@ -65,10 +65,10 @@ class ActividadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $estudiante = Actividad::find($id);
-         $estudiante->descripcion = $request->input('descripcion');
-        $estudiante->nota = $request->input('nota');
-        $estudiante->save();
+        $actividad = Actividad::find($id);
+         $actividad->descripcion = $request->input('descripcion');
+        $actividad->nota = $request->input('nota');
+        $actividad->save();
         return response(json_encode([
             "data" => "La Actividad ha sido actualizada"
         ]));
@@ -91,7 +91,7 @@ class ActividadController extends Controller
         }
         $actividad->delete();
         return response(json_encode([
-            "data" => "La actividad ha sido eliminado"
+            "data" => "La actividad ha sido eliminada"
         ]));
     }
 

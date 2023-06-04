@@ -24,7 +24,7 @@ $router->put('cambiarEstudiante/{codigo}', 'EstudianteController@update');
 $router->delete('borrarEstudiante/{codigo}', 'EstudianteController@destroy');
 
 
-$router -> get('actividades', 'ActividadController@index');
+$router -> get('actividades/{codigoEstudiante}', 'ActividadController@index');
 $router -> get('mostrarActividades/{id}', 'ActividadController@show');
 $router -> post('nuevActividades', 'ActividadController@store');
 $router -> put('CambiActividades/{id}', 'ActividadController@update');
